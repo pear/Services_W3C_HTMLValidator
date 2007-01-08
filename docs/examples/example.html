@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><title>Documentation of the Programmatic Interface (API) to The W3C Markup Validation Service</title>
+
+
+  
+    
+    <link rev="made" href="mailto:www-validator@w3.org">
+    <link rev="start" href="http://validator.w3.org/" title="Home Page">
+    <style type="text/css" media="all">@import "../base.css";</style>
+    <meta name="keywords" content="HTML, HyperText Markup Language, Validation,
+      W3C Markup Validation Service">
+    <meta name="description" content="W3C's easy-to-use
+      HTML validation service, based on an SGML parser.">
+    <meta name="revision" content="$Id$"><!-- SSI Template Version: $Id$ --></head><body>
+    <div id="banner">
+      <h1 id="title">
+	<a href="http://www.w3.org/"><img alt="W3C" id="logo" src="api_files/w3c_home_nb" height="48"></a>
+        <a href="http://www.w3.org/QA/"><img src="api_files/qa-small.png" alt="QA"></a>
+        Markup Validation Service</h1>
+	<span id="versioninfo"><abbr title="version">v</abbr>0.7.4</span>
+    </div>
+    <ul class="navbar" id="menu">
+        <li><span class="hideme"><a href="#skip" accesskey="2" title="Skip past navigation to main part of page">Skip Navigation</a> |</span>
+        <a href="http://validator.w3.org/" accesskey="1" title="Go to the Home Page for The W3C Markup Validation Service"><strong>Home</strong></a></li>
+        <li><a href="http://validator.w3.org/about.html" title="Information About this Service">About...</a></li>
+        <li><a href="http://validator.w3.org/whatsnew.html" title="The changes made to this service recently">News</a></li>
+        <li><a href="http://validator.w3.org/docs/" accesskey="3" title="Documentation for this Service">Docs</a></li>
+	<li><a href="http://validator.w3.org/docs/help.html" title="Help and answers to frequently asked questions">Help&nbsp;&amp;&nbsp;<acronym title="Frequently Asked Questions">FAQ</acronym></a></li>
+        <li><a href="http://validator.w3.org/feedback.html" accesskey="4" title="How to provide feedback on this service">Feedback</a></li>
+    </ul>
+
+    <div id="main"><!-- This DIV encapsulates everything in this page - necessary for the positioning -->
+
+
+<div class="doc">
+<h2>Markup Validator Web Service API<br>
+SOAP 1.2 validation interface documentation</h2>
+
+<p>Interface applications with the Markup Validator through its <strong>experimental</strong> API. </p>
+<p><strong>Note</strong>: Please be considerate in using this shared, free resource. 
+	Consider <a href="http://validator.w3.org/docs/install.html">Installing your own instance of the validator</a>
+	for smooth and fast operation. Excessive use of the W3C Validation Service
+	will be blocked.</p>
+
+
+<h3 id="TableOfContents">Table of Contents</h3>
+
+    <div id="toc">
+      <ul>
+        <li><a href="#requestformat">Validation Request Format</a></li>
+        <li><a href="#soap12format">SOAP format description</a>
+         <ul>
+          <li><a href="#soap12_sample">sample SOAP 1.2 validation response</a></li>
+          <li><a href="#soap12response">SOAP1.2 response format reference</a></li>
+          <li><a href="#soap12message">SOAP1.2 atomic message (error or warning) format reference</a></li>
+         </ul>
+        </li>
+        <li><a href="#libs">Libraries</a></li>
+        <li><a href="#http_headers">Using HTTP headers to know validation results</a></li>
+      </ul>
+    </div>
+    
+    <p id="skip"></p>
+
+<h3 id="requestformat">Validation Request Format</h3>
+
+<p>Below is a table of the parameter you can use to send a query to the W3C Markup Validator.</p>
+<p>If you want to use W3c's public validation server, use the parameters below
+ in conjunction with the following base URI:<br>
+<kbd>http://validator.w3.org/check</kbd> <br>
+(replace with the address of your own server if you want to call a private instance of the validator)</p>
+
+<p><strong>Note</strong>: If you wish to call the validator programmatically for a batch of documents,
+please make sure that your script will <code>sleep</code> for <strong>at least 1 second</strong> 
+between requests. The Markup Validation service is a free, public service for all, your respect
+is appreciated. thanks.</p>
+
+<table class="refdoc">
+<tbody><tr>
+<th>Parameter</th><th>Description</th><th>Default value</th>
+</tr>
+<tr>
+  <th>uri</th>
+  <td>The <acronym title="Universal Resource Locator">URL</acronym> of the document to validate</td>
+  <td>None, but either this parameter, or <code>uploaded_file</code>, 
+  or <code>fragment</code> must be given.</td>
+</tr>
+<tr>
+  <th>uploaded_file</th>
+  <td>The document to validate, POSTed as multipart/form-data</td>
+  <td>None, but either this parameter, or <code>uri</code>,   
+  or <code>fragment</code> must be given.</td>
+</tr>
+<tr>
+  <th>fragment</th>
+  <td>The source of the document to validate. Full documents only. 
+  At the moment, will only work if data is sent with the UTF-8 encoding.</td>
+  <td>None, but either this parameter, or <code>uri</code>,
+  or <code>uploaded_file</code> must be given.</td>
+</tr>
+<tr>
+  <th>output</th>
+  <td>triggers the various outputs formats of the validator. If unset, the usual
+  Web format will be sent. If set to <code>soap12</code>, the SOAP1.2 interface will 
+  be triggered. See <a href="#soap12format">below for the SOAP 1.2 response format description</a>.</td>
+  <td>unset</td>
+</tr>
+<tr>
+  <th>charset</th>
+  <td>Character encoding override: 
+  Specify the character encoding to use when parsing the document. When used with
+  the auxiliary parameter <code>fbc</code> set to 1, the given encoding will only be used as 
+  a fallback value, in case the charset is absent or unrecognized. Note that this parameter
+  is ignored if validating a <code>fragment</code> with the direct input interface.</td>
+  <td>None, by default the validator detects the charset of the document automatically.</td>
+</tr>
+<tr>
+  <th>doctype</th>
+  <td>Document Type override:
+  Specify the Document Type (DOCTYPE) to use when parsing the document. When used 
+  with  the auxiliary parameter <code>fbd</code> set to 1, the given document type will only be used
+  as a fallback value, in case the document's DOCTYPE declaration is missing or unrecognized.</td>
+  <td>None, by default the validator detects the document type of the document automatically.</td>
+</tr>
+<tr>
+  <th>verbose</th>
+  <td>In the web interface, when set to 1, will make error messages, explanations 
+  and other diagnostics more verbose. In SOAP output, does not have any impact.</td>
+  <td>0 (unset)</td>
+</tr>
+<tr>
+  <th>ss</th>
+  <td> as <em>show source</em>. In the web interface, triggers the display of the source
+  after the validation results. In SOAP output, does not have any impact.</td>
+  <td>0 (unset)</td>
+</tr>
+<tr>
+  <th>outline</th>
+  <td>In the web interface, when set to 1, triggers the display of the document outline 
+  after the validation results. In SOAP output, does not have any impact.</td>  
+  <td>0 (unset)</td>
+</tr>
+</tbody></table>
+<h3 id="soap12format">SOAP format description</h3>
+
+<p>When called with parameter <code>output=soap12</code>, the validator will switch
+to its SOAP 1.2 interface (experimental for now). Below is a sample response, as well as
+a description of the most important elements of the response.</p>
+
+<h4 id="soap12_sample">sample SOAP 1.2 validation response</h4>
+<p>A SOAP response for the validation of a document (invalid) will look like this:</p>
+<pre style="font-size: smaller;"> 
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"&gt;
+&lt;env:Body&gt;
+&lt;<a href="#soap12_markupvalidationresponse">m:markupvalidationresponse</a>
+env:encodingStyle="http://www.w3.org/2003/05/soap-encoding" 
+xmlns:m="http://www.w3.org/2005/10/markup-validator"&gt;
+    &lt;<a href="#soap12_uri">m:uri</a>&gt;http://qa-dev.w3.org/wmvs/HEAD/dev/tests/xhtml1-bogus-element.html&lt;/m:uri&gt;
+    &lt;<a href="#soap12_checkedby">m:checkedby</a>&gt;http://validator.w3.org/&lt;/m:checkedby&gt;
+    &lt;<a href="#soap12_doctype">m:doctype</a>&gt;-//W3C//DTD XHTML 1.0 Transitional//EN&lt;/m:doctype&gt;
+    &lt;<a href="#soap12_charset">m:charset</a>&gt;utf-8&lt;/m:charset&gt;
+    &lt;<a href="#soap12_validity">m:validity</a>&gt;false&lt;/m:validity&gt;
+    &lt;<a href="#soap12_errors">m:errors</a>&gt;
+        &lt;<a href="#soap12_errorcount">m:errorcount</a>&gt;1&lt;/m:errorcount&gt;
+        &lt;<a href="#soap12_errorlist">m:errorlist</a>&gt;
+          
+            &lt;<a href="#soap12_error">m:error</a>&gt;
+                &lt;<a href="#soap12_line">m:line</a>&gt;13&lt;/m:line&gt;
+                &lt;<a href="#soap12_col">m:col</a>&gt;6&lt;/m:col&gt;                                           
+                &lt;<a href="#soap12_message">m:message</a>&gt;element "foo" undefined&lt;/m:message&gt;
+            &lt;/m:error&gt;
+           
+        &lt;/m:errorlist&gt;
+    &lt;/m:errors&gt;
+    &lt;m:warnings&gt;
+        &lt;m:warningcount&gt;0&lt;/m:warningcount&gt;
+        &lt;m:warninglist&gt;
+        
+        
+        &lt;/m:warninglist&gt;
+    &lt;/m:warnings&gt;
+&lt;/m:markupvalidationresponse&gt;
+&lt;/env:Body&gt;
+&lt;/env:Envelope&gt;
+</pre>
+<h4 id="soap12response">SOAP1.2 response format reference</h4>
+
+<table class="refdoc">
+<tbody><tr><th>element</th><th>description</th></tr>
+<tr>
+  <th id="soap12_markupvalidationresponse">markupvalidationresponse</th>
+  <td>The main element of the validation response. Encloses all other information about the validation results.</td>
+</tr>
+<tr>
+  <th id="soap12_uri">uri</th>
+  <td>the address of the document validated. Will (likely?) be <kbd>upload://Form Submission</kbd>
+  if an uploaded document or fragment was validated.
+  In <a href="http://www.w3.org/WAI/ER/">EARL</a> terms, this is the <kbd>TestSubject</kbd>.
+  </td>
+</tr>
+<tr>
+  <th id="soap12_checkedby">checkedby</th>
+  <td>Location of the service which provided the validation result. 
+  In <a href="http://www.w3.org/WAI/ER/">EARL</a> terms, this is the <kbd>Assertor</kbd>.
+  </td>
+</tr>
+<tr>
+  <th id="soap12_doctype">doctype</th>
+  <td>Detected (or forced) Document Type for the validated document</td>
+</tr>
+<tr>
+  <th id="soap12_charset">charset</th>
+  <td>Detected (or forced) Character Encoding for the validated document</td>
+</tr>
+<tr>
+  <th id="soap12_validity">validity</th>
+  <td>Whether or not the document validated passed or not formal validation (true|false boolean)</td>
+</tr>
+<tr>
+  <th id="soap12_errors">errors</th>
+  <td>Encapsulates all data about errors encountered through the validation process</td>
+</tr>
+<tr>
+  <th id="soap12_errorcount">errorcount</th>
+  <td>a child of <a href="#soap12_errors">errors</a>, counts the number of errors listed</td>
+</tr>
+<tr>
+  <th id="soap12_errorlist">errorlist</th>
+  <td>a child of <a href="#soap12_errors">errors</a>, contains the list of errors (surprise!)</td>
+</tr>
+<tr>
+  <th id="soap12_error">error</th>
+  <td>a child of <a href="#soap12_errorlist">errorlist</a>, contains the information on a single 
+  validation error. </td>
+</tr>
+</tbody></table>
+<p><strong>Note</strong>: <code>warnings</code>, <code>warningcount</code>, 
+<code>warninglist</code> and <code>warning</code> are similar to, respectively,
+<code><a href="#soap12_errors">errors</a></code>, 
+<code><a href="#soap12_errorcount">errorcount</a></code>, 
+<code><a href="#soap12_errorlist">errorlist</a></code> and 
+<code><a href="#soap12_error">error</a></code>.
+</p>
+<h4 id="soap12message">SOAP1.2 atomic message (error or warning) format reference</h4>
+<p>As seen as the example above, the children of the <code><a href="#soap12_error">error</a></code>
+element, but also the <code>warning</code> element are <code>line</code>, <code>col</code> and
+<code>message</code>, defined below:</p>
+<table class="refdoc">
+<tbody><tr><th>element</th><th>description</th></tr>
+<tr>
+  <th id="soap12_line">line</th>
+  <td>Within the source code of the validated document, refers to the line where the error was detected.</td>
+</tr>
+<tr>
+  <th id="soap12_col">col</th>
+  <td>Within the source code of the validated document, refers to the line where the column was detected.</td>
+</tr>
+<tr>
+  <th id="soap12_message">message</th>
+  <td>The actual error message</td>
+</tr>
+<tr>
+  <th id="soap12_messageid">messageid</th>
+  <td>@@ not implemented yet@@ - should be the number of the error, as addressed internally by the validator</td>
+</tr>
+</tbody></table>
+
+<h3 id="libs">Libraries</h3>
+<p>Building of libraries used to interact with the validator's API is <a href="http://www.w3.org/QA/2006/10/validator_api.html">encouraged</a>. If you are the 
+    maintainer of such a library, <a href="http://validator.w3.org/feedback.html">contact us</a> and we will list it here.</p>
+<h4>Known libraries for the W3C Markup Validator API</h4>
+
+<ul>
+   <li><a href="http://search.cpan.org/dist/WebService-Validator-HTML-W3C/">WebService::Validator::HTML::W3C</a> in perl, 
+       by Struan Donald.</li>
+</ul>
+
+<h3 id="http_headers">Using HTTP headers to know validation results</h3>
+
+<p>Every validation result is served via the HTTP protocol, with custom headers giving a simple, quick way
+    to get validation results without having to parse the results body. This is a simple (but poorer) alternative to using 
+    the full API described above.</p>
+    
+<p>The HTTP headers for a validation results page will generally look like:</p>
+<pre>    HEAD 'http://validator.localhost/check?uri=http%3A%2F%2Fwww.w3.org'
+    
+    200 OK
+    [...]
+    Content-Language: en
+    Content-Type: text/html; charset=utf-8
+    X-W3C-Validator-Errors: 0
+    X-W3C-Validator-Recursion: 1
+    X-W3C-Validator-Status: Valid
+</pre>
+
+<p>The headers and their values are as follows:</p>
+<table>
+    <tbody><tr><th>Header</th><th>Value</th><th>Notes</th></tr>
+    <tr>
+        <td>X-W3C-Validator-Status</td>
+        <td><code>Valid</code> or <code>Invalid</code></td>
+        <td>May not be present if validation could not be performed (404 Not found, etc)</td>
+    </tr>
+    <tr>
+        <td>X-W3C-Validator-Errors</td>
+        <td>Number of Errors found during validation. <code>0</code> if no errors found.</td>
+        <td>0 does not necessarily mean "valid" (it may mean that validation could not be performed)</td>
+    </tr>
+    <tr>
+        <td>X-W3C-Validator-Recursion</td>
+        <td>Integer. Generally, <code>1</code>. More if recursively validating validation results. 
+           </td>
+        <td>    The validator will use this in conjunction with its <code>Max Recursion</code> setup to avoid
+               abusive recursion (Denial of Service attack).</td>
+    </tr>
+</tbody></table>
+</div>
+      </div><!-- End of "main" DIV. -->
+
+<address>
+      <a href="http://validator.w3.org/check?uri=referer"><img src="api_files/valid-xhtml10" alt="Valid XHTML 1.0!" height="31" width="88"></a>
+      Feedback: 
+	<a title="Send Feedback for the W3C Markup Validation Service" href="http://validator.w3.org/feedback.html">The W3C Validator Team</a><br>
+      <!-- SSI Template Version: $Id$ -->
+    </address>
+    <p class="copyright">
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 1994-2006
+      <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a>®
+      (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+      <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>),
+      All Rights Reserved.
+      W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+      <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+      and <a rel="Copyright" href="http://www.w3.org/Consortium/Legal/copyright-software">software licensing</a>
+      rules apply. Your interactions with this site are in accordance
+      with our <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> and
+      <a href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> privacy
+      statements.
+    </p>
+
+  </body></html>
