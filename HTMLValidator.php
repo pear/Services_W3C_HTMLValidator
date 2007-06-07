@@ -313,7 +313,8 @@ class Services_W3C_HTMLValidator
             }
             // Handle the bool element validity
             $element = $doc->getElementsByTagName('validity');
-            if ($element->item(0)->nodeValue == 'true') {
+            if ($element->length &&
+                $element->item(0)->nodeValue == 'true') {
                 $response->validity = true;
             } else {
                 $response->validity = false;

@@ -16,7 +16,7 @@ $pfm = PEAR_PackageFileManager2::importOptions('package.xml', array(
 //$pfm->setOptions(array(
 	'packagedirectory' => dirname(__FILE__),
 	'baseinstalldir' => 'Services/W3C',
-	'filelistgenerator' => 'svn',
+	'filelistgenerator' => 'cvs',
 	'ignore' => array(	'package.xml',
 						'.project',
 						'*.tgz',

@@ -45,6 +45,24 @@ class Services_W3C_HTMLValidator_Message
     public $messageid;
     
     /**
+     * Explanation for this message.
+     * 
+     * HTML snippet which describes the message, usually with information on
+     * how to correct the problem.
+     * @var string
+     */
+    public $explanation;
+    
+    /**
+     * Source which caused the message.
+     * 
+     * the snippet of HTML code which invoked the message to give the 
+     * context of the e
+     * @var string
+     */
+    public $source;
+    
+    /**
      * Constructor for a response message
      *
      * @param object $node
