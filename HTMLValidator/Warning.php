@@ -2,8 +2,11 @@
 /**
  * This file contains a simple class for warning messages returned from a validator.
  * 
- * @package Services_W3C_HTMLValidator
- * @author Brett Bieber
+ * @license     BSD
+ * @package     Services_W3C_HTMLValidator
+ * @author      Brett Bieber
+ * @link        http://pear.php.net/package/Services_W3C_HTMLValidator
+ * @version     CVS: $Id$
  */
 
 /**

@@ -4,9 +4,11 @@
  * This file contains the base class for utilizing an instance of the
  * W3 HTML Validator.
  * 
- * @license BSD
- * @package Services_W3C_HTMLValidator
- * @author Brett Bieber
+ * @license     BSD
+ * @package     Services_W3C_HTMLValidator
+ * @author      Brett Bieber
+ * @link        http://pear.php.net/package/Services_W3C_HTMLValidator
+ * @version     CVS: $Id$
  */
 
 /**

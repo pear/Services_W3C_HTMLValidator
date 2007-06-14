@@ -37,13 +37,14 @@ With this package you can connect to a running instance of the validator and ret
 By using the SOAP 1.2 output format from the validator, you are returned simple objects containing all the information from the validator. With this package it is trivial to build a validation system for web publishing.
 ');
 $pfm->setChannel('pear.php.net');
-$pfm->setAPIStability('alpha');
-$pfm->setReleaseStability('alpha');
-$pfm->setAPIVersion('0.2.0');
-$pfm->setReleaseVersion('0.2.0');
-$pfm->setNotes('Switch last remaining private member variable to protected (thanks Christian Weiske).
-Move examples into docs directory (thanks Mark Wiesemann)
-Change channel from pear.saltybeagle.com to pear.php.net
+$pfm->setAPIStability('beta');
+$pfm->setReleaseStability('beta');
+$pfm->setAPIVersion('0.3.0');
+$pfm->setReleaseVersion('0.3.0');
+$pfm->setNotes('New features - return error and warning source context, unique message id, and explanations for the error and warnings.
+http://www.w3.org/Bugs/Public/show_bug.cgi?id=4489
+
+These features will be released in the next version of the W3C Validator (version 0.8.0), until the next release users can test the output by assigning the $validator->validator_uri to the CVS version for the validator http://qa-dev.w3.org/wmvs/HEAD/check.
 ');
 
 //$pfm->addMaintainer('lead', 'saltybeagle', 'Brett Bieber', 'brett.bieber@gmail.com');
