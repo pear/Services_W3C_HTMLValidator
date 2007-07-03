@@ -74,8 +74,8 @@ class Services_W3C_HTMLValidatorTest extends PHPUnit_Framework_TestCase {
      */
     public function testValidateFile() {
         $v = new Services_W3C_HTMLValidator();
-        $doc_dir = exec('pear config-get doc_dir');
-        $file = '/Services_W3C_HTMLValidator/docs/examples/example.html';
+        $doc_dir = '';
+        $file = dirname(realpath(__FILE__)).'/../../../docs/examples/example.html';
         $r = $v->validateFile($doc_dir.$file);
         $this->assertEquals(get_class($r),'Services_W3C_HTMLValidator_Response');
         $this->assertEquals($r->isValid(),false);
@@ -141,7 +141,7 @@ xmlns:m="http://www.w3.org/2005/10/markup-validator">
 </env:Envelope>
 ');
         $this->assertEquals(get_class($r),'Services_W3C_HTMLValidator_Response');
-        $this->assertEquals(serialize($r),'O:35:"Services_W3C_HTMLValidator_Response":7:{s:3:"uri";s:66:"http://qa-dev.w3.org/wmvs/HEAD/dev/tests/xhtml1-bogus-element.html";s:9:"checkedby";s:24:"http://validator.w3.org/";s:7:"doctype";s:38:"-//W3C//DTD XHTML 1.0 Transitional//EN";s:7:"charset";s:5:"utf-8";s:8:"validity";b:0;s:6:"errors";a:1:{i:0;O:32:"Services_W3C_HTMLValidator_Error":4:{s:4:"line";s:2:"13";s:3:"col";s:1:"6";s:7:"message";s:23:"element "foo" undefined";s:9:"messageid";N;}}s:8:"warnings";a:0:{}}');
+        $this->assertEquals(serialize($r),'O:35:"Services_W3C_HTMLValidator_Response":7:{s:3:"uri";s:66:"http://qa-dev.w3.org/wmvs/HEAD/dev/tests/xhtml1-bogus-element.html";s:9:"checkedby";s:24:"http://validator.w3.org/";s:7:"doctype";s:38:"-//W3C//DTD XHTML 1.0 Transitional//EN";s:7:"charset";s:5:"utf-8";s:8:"validity";b:0;s:6:"errors";a:1:{i:0;O:32:"Services_W3C_HTMLValidator_Error":6:{s:4:"line";s:2:"13";s:3:"col";s:1:"6";s:7:"message";s:23:"element "foo" undefined";s:9:"messageid";N;s:11:"explanation";N;s:6:"source";N;}}s:8:"warnings";a:0:{}}');
     }
 }
 
