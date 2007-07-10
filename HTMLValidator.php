@@ -1,14 +1,17 @@
 <?php
-
 /**
  * This file contains the base class for utilizing an instance of the
  * W3 HTML Validator.
  * 
- * @license     BSD
- * @package     Services_W3C_HTMLValidator
- * @author      Brett Bieber
- * @link        http://pear.php.net/package/Services_W3C_HTMLValidator
- * @version     CVS: $Id$
+ * PHP versions 5
+ * 
+ * @category Services
+ * @package  Services_W3C_HTMLValidator
+ * @author   Brett Bieber <brett.bieber@gmail.com>
+ * @license  http://www.opensource.org/licenses/bsd-license.php BSD
+ * @version  CVS: $id$
+ * @link     http://pear.php.net/package/Services_W3C_HTMLValidator
+ * @since    File available since Release 0.2.0
  */
 
 /**
@@ -28,7 +31,11 @@ require_once 'Services/W3C/HTMLValidator/Warning.php';
 /**
  * A simple class for utilizing the W3C HTML Validator service.
  * 
- * @package Services_W3C_HTMLValidator
+ * @category Services
+ * @package  Services_W3C_HTMLValidator
+ * @author   Brett Bieber <brett.bieber@gmail.com>
+ * @license  http://www.opensource.org/licenses/bsd-license.php BSD
+ * @link     http://pear.php.net/package/Services_W3C_HTMLValidator
  */
 class Services_W3C_HTMLValidator
 {
@@ -150,6 +157,8 @@ class Services_W3C_HTMLValidator
     
     /**
      * Constructor for the class.
+     * 
+     * @param array $options An array of options
      */
     function __construct($options = array())
     {
@@ -160,7 +169,9 @@ class Services_W3C_HTMLValidator
      * Sets options for the class.
      * Pass an associative array of options for the class.
      *
-     * @param array $options
+     * @param array $options array of options
+     * 
+     * @return void
      */
     function setOptions($options)
     {
@@ -175,7 +186,8 @@ class Services_W3C_HTMLValidator
      * Executes the validator using the current parameters and returns a Response 
      * object on success.
      *
-     * @param string $uri
+     * @param string $uri The address to the page to validate ex: http://example.com/
+     * 
      * @return mixed object Services_W3C_HTMLValidator | bool false
      */
     function validate($uri)
@@ -195,7 +207,8 @@ class Services_W3C_HTMLValidator
      * Requests validation on the local file, from an instance of the W3C validator.
      * The file is posted to the W3 validator using multipart/form-data.
      * 
-     * @param string file to be validated.
+     * @param string $file file to be validated.
+     * 
      * @return mixed object Services_W3C_HTMLValidator | bool fals
      */
     function validateFile($file)
@@ -217,7 +230,8 @@ class Services_W3C_HTMLValidator
     /**
      * Validate an html string
      * 
-     * @param string full html document fragment
+     * @param string $html full html document fragment
+     * 
      * @return mixed object Services_W3C_HTMLValidator | bool fals
      */
     function validateFragment($html)
@@ -234,6 +248,9 @@ class Services_W3C_HTMLValidator
     /**
      * Prepares a request object to send to the validator.
      *
+     * @param string $type uri, file, or fragment
+     * 
+     * @return void
      */
     protected function buildRequest($type = 'uri')
     {
@@ -297,7 +314,8 @@ class Services_W3C_HTMLValidator
      * 
      * This function parses a SOAP 1.2 response xml string from the validator.
      *
-     * @param string $xml
+     * @param string $xml The raw soap12 XML response from the validator.
+     * 
      * @return mixed object Services_W3C_HTMLValidator_Response | bool false
      */
     static function parseSOAP12Response($xml)

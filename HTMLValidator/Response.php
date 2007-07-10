@@ -3,15 +3,25 @@
  * File contains a simple class structure for holding a response from the
  * W3C HTMLValidator software.
  * 
- * @license     BSD
- * @package     Services_W3C_HTMLValidator
- * @author      Brett Bieber
- * @link        http://pear.php.net/package/Services_W3C_HTMLValidator
- * @version     CVS: $Id$
+ * PHP versions 5
+ * 
+ * @category Services
+ * @package  Services_W3C_HTMLValidator
+ * @author   Brett Bieber <brett.bieber@gmail.com>
+ * @license  http://www.opensource.org/licenses/bsd-license.php BSD
+ * @version  CVS: $id$
+ * @link     http://pear.php.net/package/Services_W3C_HTMLValidator
+ * @since    File available since Release 0.2.0
  */
 
 /**
  * Simple class for a W3C HTML Validator Response.
+ * 
+ * @category Services
+ * @package  Services_W3C_HTMLValidator
+ * @author   Brett Bieber <brett.bieber@gmail.com>
+ * @license  http://www.opensource.org/licenses/bsd-license.php BSD
+ * @link     http://pear.php.net/package/Services_W3C_HTMLValidator
  */
 class Services_W3C_HTMLValidator_Response
 {

@@ -2,16 +2,26 @@
 /**
  * This file provides a base class for messages from a W3C validator.
  * 
- * @license     BSD
- * @package     Services_W3C_HTMLValidator
- * @author      Brett Bieber
- * @link        http://pear.php.net/package/Services_W3C_HTMLValidator
- * @version     CVS: $Id$
+ * PHP versions 5
+ * 
+ * @category Services
+ * @package  Services_W3C_HTMLValidator
+ * @author   Brett Bieber <brett.bieber@gmail.com>
+ * @license  http://www.opensource.org/licenses/bsd-license.php BSD
+ * @version  CVS: $id$
+ * @link     http://pear.php.net/package/Services_W3C_HTMLValidator
+ * @since    File available since Release 0.2.0
  */
 
 /**
  * The message class holds a response from the W3 validator.
- */
+ * 
+ * @category Services
+ * @package  Services_W3C_HTMLValidator
+ * @author   Brett Bieber <brett.bieber@gmail.com>
+ * @license  http://www.opensource.org/licenses/bsd-license.php BSD
+ * @link     http://pear.php.net/package/Services_W3C_HTMLValidator
+ */ 
 class Services_W3C_HTMLValidator_Message
 {
     /**
@@ -68,7 +78,7 @@ class Services_W3C_HTMLValidator_Message
     /**
      * Constructor for a response message
      *
-     * @param object $node
+     * @param object $node A dom document node.
      */
     function __construct($node = null)
     {
