@@ -118,7 +118,7 @@ class Services_W3C_HTMLValidatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(get_class($r), 'Services_W3C_HTMLValidator_Response');
         $this->assertEquals($r->isValid(), false);
         $this->assertEquals($r->charset, 'utf-8');
-        $this->assertEquals(count($r->errors), 12);
+        $this->assertEquals(count($r->errors), 37);
         $this->assertEquals(get_class($r->errors[0]),
             'Services_W3C_HTMLValidator_Error');
     }
@@ -134,7 +134,7 @@ class Services_W3C_HTMLValidatorTest extends PHPUnit_Framework_TestCase
         $r = $v->validateFragment('<!DOCTYPE html PUBLIC '.
         '"-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head><title>HTML Fragment</title></head>
     <body><p>TEST!</p></body>
 </html>');

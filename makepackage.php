@@ -58,16 +58,15 @@ trivial to build a validation system for web publishing.
 $pfm->setChannel('pear.php.net');
 $pfm->setAPIStability('beta');
 $pfm->setReleaseStability('beta');
-$pfm->setAPIVersion('0.3.0');
-$pfm->setReleaseVersion('0.3.0');
+$pfm->setAPIVersion('1.0.0RC1');
+$pfm->setReleaseVersion('1.0.0RC1');
 $pfm->setNotes('New features - return error and warning source context, unique 
 message id, and explanations for the error and warnings.
 http://www.w3.org/Bugs/Public/show_bug.cgi?id=4489
 
-These features will be released in the next version of the W3C Validator (version 
-0.8.0), until the next release users can test the output by assigning the 
-$validator->validator_uri to the CVS version for the validator 
-http://qa-dev.w3.org/wmvs/HEAD/check.
+These features are included in the latest version of the W3C Validator (version 
+0.8.0).
+Unit Tests now included, additional documentation and coding standards fixes.
 ');
 
 //$pfm->addMaintainer('lead', 'saltybeagle', 'Brett', 'brett.bieber@gmail.com');

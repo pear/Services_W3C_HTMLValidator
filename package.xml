@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.5.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.5.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
  <name>Services_W3C_HTMLValidator</name>
  <channel>pear.php.net</channel>
  <summary>An Object Oriented Interface to the W3C HTML Validator service.</summary>
- <description>This package provides an object oriented interface to the API of the W3 HTML Validator application (http://validator.w3.org/).
-With this package you can connect to a running instance of the validator and retrieve the validation results (true|false) as well as the errors and warnings for a web page.
+ <description>This package provides an object oriented interface to the API 
+of the W3 HTML Validator application (http://validator.w3.org/).
+With this package you can connect to a running instance of the validator and 
+retrieve the validation results (true|false) as well as the errors and warnings 
+for a web page.
 
-By using the SOAP 1.2 output format from the validator, you are returned simple objects containing all the information from the validator. With this package it is trivial to build a validation system for web publishing.
+By using the SOAP 1.2 output format from the validator, you are returned simple 
+objects containing all the information from the validator. With this package it is 
+trivial to build a validation system for web publishing.
  </description>
  <lead>
   <name>Brett Bieber</name>
@@ -14,21 +19,24 @@ By using the SOAP 1.2 output format from the validator, you are returned simple 
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2007-06-14</date>
- <time>16:12:56</time>
+ <date>2007-07-25</date>
+ <time>08:38:53</time>
  <version>
-  <release>0.3.0</release>
-  <api>0.3.0</api>
+  <release>1.0.0RC1</release>
+  <api>1.0.0RC1</api>
  </version>
  <stability>
   <release>beta</release>
   <api>beta</api>
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
- <notes>New features - return error and warning source context, unique message id, and explanations for the error and warnings.
+ <notes>New features - return error and warning source context, unique 
+message id, and explanations for the error and warnings.
 http://www.w3.org/Bugs/Public/show_bug.cgi?id=4489
 
-These features will be released in the next version of the W3C Validator (version 0.8.0), until the next release users can test the output by assigning the $validator-&gt;validator_uri to the CVS version for the validator http://qa-dev.w3.org/wmvs/HEAD/check.
+These features are included in the latest version of the W3C Validator (version 
+0.8.0).
+Unit Tests now included, additional documentation and coding standards fixes.
  </notes>
  <contents>
   <dir baseinstalldir="Services/W3C" name="/">
@@ -53,6 +61,7 @@ These features will be released in the next version of the W3C Validator (versio
       <file name="HTMLValidatorTest.php" role="test" />
      </dir> <!-- /tests/Services/W3C -->
     </dir> <!-- /tests/Services -->
+    <file name="AllTests.php" role="test" />
    </dir> <!-- /tests -->
    <file name="HTMLValidator.php" role="php" />
   </dir> <!-- / -->
@@ -147,7 +156,26 @@ Change channel from pear.saltybeagle.com to pear.php.net</notes>
    <notes>New features - return error and warning source context, unique message id, and explanations for the error and warnings.
 http://www.w3.org/Bugs/Public/show_bug.cgi?id=4489
 
-These features will be released in the next version of the W3C Validator (version 0.8.0), until the next release users can test the output by assigning the $validator-&gt;validator_uri to the CVS version for the validator http://qa-dev.w3.org/wmvs/HEAD/check.
+These features will be released in the next version of the W3C Validator (version 0.8.0), until the next release users can test the output by assigning the $validator-&gt;validator_uri to the CVS version for the validator http://qa-dev.w3.org/wmvs/HEAD/check.</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0RC1</release>
+    <api>1.0.0RC1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2007-07-25</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>New features - return error and warning source context, unique 
+message id, and explanations for the error and warnings.
+http://www.w3.org/Bugs/Public/show_bug.cgi?id=4489
+
+These features are included in the latest version of the W3C Validator (version 
+0.8.0).
+Unit Tests now included, additional documentation and coding standards fixes.
    </notes>
   </release>
  </changelog>
