@@ -1,9 +1,9 @@
 <?php
 /**
  * Test suite for Services_W3C_HTMLValidator
- * 
+ *
  * PHP versions 5
- * 
+ *
  * @category Services
  * @package  Services_W3C_HTMLValidator
  * @author   Brett Bieber <brett.bieber@gmail.com>
@@ -13,8 +13,8 @@
  * @since    File available since Release 0.2.0
  */
 
-if (!defined('PHPUNIT_MAIN_METHOD')) {
-    define('PHPUNIT_MAIN_METHOD', 'Services_W3C_HTMLValidator_AllTests::main');
+if (!defined('PHPUnit_MAIN_METHOD')) {
+    define('PHPUnit_MAIN_METHOD', 'Services_W3C_HTMLValidator_AllTests::main');
 }
 
 require_once 'PHPUnit/Framework/TestSuite.php';
@@ -25,7 +25,7 @@ require_once 'Services/W3C/HTMLValidatorTest.php';
 
 /**
  * Class for running all test suites for Services_W3C_HTMLvalidator.
- * 
+ *
  * @category Services
  * @package  Services_W3C_HTMLValidator
  * @author   Brett Bieber <brett.bieber@gmail.com>
@@ -54,7 +54,7 @@ class Services_W3C_HTMLValidator_AllTests
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Services_W3C_HTMLValidatorTest');
+        $suite = new PHPUnit_Framework_TestSuite('Services_W3C_HTMLValidator tests');
         /** Add testsuites, if there is. */
         $suite->addTestSuite('Services_W3C_HTMLValidatorTest');
 
@@ -62,7 +62,7 @@ class Services_W3C_HTMLValidator_AllTests
     }
 }
 
-if (PHPUNIT_MAIN_METHOD == 'Services_W3C_HTMLValidator_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Services_W3C_HTMLValidator_AllTests::main') {
     Services_W3C_HTMLValidator_AllTests::main();
 }
 ?>
