@@ -28,19 +28,19 @@ chdir(dirname(__FILE__));
 $pfm = PEAR_PackageFileManager2::importOptions('package.xml', array(
 //$pfm = new PEAR_PackageFileManager2();
 //$pfm->setOptions(array(
-	'packagedirectory' => dirname(__FILE__),
-	'baseinstalldir' => 'Services/W3C',
-	'filelistgenerator' => 'cvs',
-	'ignore' => array(	'package.xml',
-						'.project',
-						'*.tgz',
-						'makepackage.php',
-						'*CVS/*',
-						'*SVN/*',
-						'.cache'),
-	'simpleoutput' => true,
-	'roles'=>array('php'=>'php'	),
-	'exceptions'=>array()
+    'packagedirectory'  => dirname(__FILE__),
+    'baseinstalldir'    => 'Services/W3C',
+    'filelistgenerator' => 'cvs',
+    'ignore' => array(  'package.xml',
+                        '.project',
+                        '*.tgz',
+                        'makepackage.php',
+                        '*CVS/*',
+                        '*SVN/*',
+                        '.cache'),
+    'simpleoutput' => true,
+    'roles'=>array('php'=>'php'),
+    'exceptions'=>array()
 ));
 $pfm->setPackage('Services_W3C_HTMLValidator');
 $pfm->setPackageType('php'); // this is a PEAR-style php script package

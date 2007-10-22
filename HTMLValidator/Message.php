@@ -84,7 +84,7 @@ class Services_W3C_HTMLValidator_Message
     {
         if (isset($node)) {
             foreach (get_class_vars('Services_W3C_HTMLValidator_Message') as
-            	$var => $val) {
+                $var => $val) {
                 $element = $node->getElementsByTagName($var);
                 if ($element->length) {
                     $this->$var = $element->item(0)->nodeValue;
