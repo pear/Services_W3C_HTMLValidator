@@ -39,8 +39,7 @@ class ValidationTestSuite extends PHPUnit_Framework_TestSuite
                                'http://events.unl.edu/',
                                'http://www.google.com/');        
         $suite = new PHPUnit_Framework_TestSuite('ValidationTestSuite tests');
-        /** Add testsuites, if there is. */
-        $suite->addTestSuite('ValidationTestSuite');
+        /** Add tests, if there is. */
         foreach ($uris_to_check as $uri) {
             $test      = new URIValidationTest('testURI');
             $test->uri = $uri;
