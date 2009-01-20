@@ -58,15 +58,10 @@ trivial to build a validation system for web publishing.
 $pfm->setChannel('pear.php.net');
 $pfm->setAPIStability('beta');
 $pfm->setReleaseStability('beta');
-$pfm->setAPIVersion('1.0.0RC1');
-$pfm->setReleaseVersion('1.0.0RC1');
-$pfm->setNotes('New features - return error and warning source context, unique 
-message id, and explanations for the error and warnings.
-http://www.w3.org/Bugs/Public/show_bug.cgi?id=4489
-
-These features are included in the latest version of the W3C Validator (version 
-0.8.0).
-Unit Tests now included, additional documentation and coding standards fixes.
+$pfm->setAPIVersion('1.0.0RC2');
+$pfm->setReleaseVersion('1.0.0RC2');
+$pfm->setNotes('
+* Switch to HTTP_Request2
 ');
 
 //$pfm->addMaintainer('lead', 'saltybeagle', 'Brett', 'brett.bieber@gmail.com');
@@ -74,7 +69,7 @@ $pfm->setLicense('BSD', 'http://www.opensource.org/licenses/bsd-license.php');
 $pfm->clearDeps();
 $pfm->setPhpDep('5.0.0');
 $pfm->setPearinstallerDep('1.4.3');
-$pfm->addPackageDepWithChannel('required', 'HTTP_Request', 'pear.php.net', '1.3.0');
+$pfm->addPackageDepWithChannel('required', 'HTTP_Request2', 'pear.php.net', '0.2.0');
 
 $pfm->generateContents();
 if (isset($_SERVER['argv']) && $_SERVER['argv'][1] == 'make') {

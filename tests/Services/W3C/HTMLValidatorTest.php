@@ -94,7 +94,7 @@ class Services_W3C_HTMLValidatorTest extends PHPUnit_Framework_TestCase
      */
     public function testValidate()
     {
-        $uri = 'http://www.unl.edu/';
+        $uri = 'http://www.w3.org/';
         $v   = new Services_W3C_HTMLValidator();
         $r   = $v->validate($uri);
         $this->assertEquals(get_class($r), 'Services_W3C_HTMLValidator_Response');

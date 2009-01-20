@@ -15,9 +15,9 @@
  */
 
 /**
- * require the HTTP_Request class for sending requests to the validator.
+ * require the HTTP_Request2 class for sending requests to the validator.
  */
-require_once 'HTTP/Request.php';
+require_once 'HTTP/Request2.php';
 
 /**
  * Uses response object.
@@ -150,7 +150,7 @@ class Services_W3C_HTMLValidator
     public $outline = false;
     
     /**
-     * HTTP_Request object.
+     * HTTP_Request2 object.
      * @var object
      */
     protected $request;
@@ -163,6 +163,8 @@ class Services_W3C_HTMLValidator
     function __construct($options = array())
     {
         $this->setOptions($options);
+        
+        $this->setRequest(new HTTP_Request2());
     }
     
     /**
@@ -181,6 +183,20 @@ class Services_W3C_HTMLValidator
     }
     
     /**
+     * Sets the HTTP request object to use.
+     *
+     * @param HTTP_Request2 $request The request object.
+     * 
+     * @return Services_W3C_HTMLValidator
+     */
+    function setRequest(HTTP_Request2 $request)
+    {
+        $this->request = $request;
+        
+        return $this;
+    }
+    
+    /**
      * Validates a given URI
      * 
      * Executes the validator using the current parameters and returns a Response 
@@ -194,8 +210,8 @@ class Services_W3C_HTMLValidator
     {
         $this->uri = $uri;
         $this->buildRequest('uri');
-        if ($this->sendRequest()) {
-            return $this->parseSOAP12Response($this->request->getResponseBody());
+        if ($response = $this->sendRequest()) {
+            return $this->parseSOAP12Response($response->getBody());
         } else {
             return false;
         }
@@ -216,8 +232,8 @@ class Services_W3C_HTMLValidator
         if (file_exists($file)) {
             $this->uploaded_file = $file;
             $this->buildRequest('file');
-            if ($this->sendRequest()) {
-                return $this->parseSOAP12Response($this->request->getResponseBody());
+            if ($response = $this->sendRequest()) {
+                return $this->parseSOAP12Response($response->getBody());
             } else {
                 return false;
             }
@@ -238,8 +254,8 @@ class Services_W3C_HTMLValidator
     {
         $this->fragment = $html;
         $this->buildRequest('fragment');
-        if ($this->sendRequest()) {
-            return $this->parseSOAP12Response($this->request->getResponseBody());
+        if ($response = $this->sendRequest()) {
+            return $this->parseSOAP12Response($response->getBody());
         } else {
             return false;
         }
@@ -254,26 +270,26 @@ class Services_W3C_HTMLValidator
      */
     protected function buildRequest($type = 'uri')
     {
-        $this->request = new HTTP_Request();
         $this->request->setURL($this->validator_uri);
         switch ($type) {
         case 'uri':
         default:
-            $this->request->setMethod(HTTP_REQUEST_METHOD_GET);
-            $this->request->addQueryString('uri', $this->uri);
-            $method = 'addQueryString';
+            $this->request->setMethod(HTTP_Request2::METHOD_GET);
+            $this->setQueryVariable('uri', $this->uri);
+            $method = 'setQueryVariable';
             break;
         case 'file':
-            $this->request->setMethod(HTTP_REQUEST_METHOD_POST);
-            $this->request->addFile('uploaded_file',
+            $this->request->setMethod(HTTP_Request2::METHOD_POST);
+            $this->request->addUpload('uploaded_file',
                                      $this->uploaded_file,
+                                     null,
                                      'text/html');
-            $method = 'addPostData';
+            $method = 'addPostParameter';
             break;
         case 'fragment':
-            $this->request->setMethod(HTTP_REQUEST_METHOD_POST);
-            $this->request->addPostData('fragment', $this->fragment);
-            $method = 'addPostData';
+            $this->request->setMethod(HTTP_Request2::METHOD_POST);
+            $this->addPostParameter('fragment', $this->fragment);
+            $method = 'addPostParameter';
             break;
         }
         
@@ -287,12 +303,40 @@ class Services_W3C_HTMLValidator
                         'output') as $option) {
             if (isset($this->$option)) {
                 if (is_bool($this->$option)) {
-                    $this->request->$method($option, intval($this->$option));
+                    $this->$method($option, intval($this->$option));
                 } else {
-                    $this->request->$method($option, $this->$option);
+                    $this->$method($option, $this->$option);
                 }
             }
         }
+    }
+    
+    /**
+     * Set a querystring variable for the request
+     * 
+     * @param string $name  Name of the querystring parameter
+     * @param mixed  $value Value of the parameter
+     * 
+     * @return void
+     */
+    protected function setQueryVariable($name, $value = '')
+    {
+        $url =& $this->request->getURL();
+        $url->setQueryVariable($name, $value);
+        $this->request->setURL($url);
+    }
+    
+    /**
+     * Add post data to the request
+     * 
+     * @param string $name  Name of the post field
+     * @param mixed  $value Value of the field
+     * 
+     * @return void
+     */
+    protected function addPostParameter($name, $value = '')
+    {
+        $this->request->addPostParameter($name, $value);
     }
     
     /**
@@ -302,11 +346,13 @@ class Services_W3C_HTMLValidator
      */
     protected function sendRequest()
     {
-        if (!PEAR::isError($this->request->sendRequest())) {
-            return true;
-        } else {
+        try {
+            return $this->request->send();
+        } catch (Exception $e) {
+            throw new Exception('Error sending request', null, $e);
             return false;
         }
+        
     }
     
     /**
