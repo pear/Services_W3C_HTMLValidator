@@ -58,10 +58,10 @@ trivial to build a validation system for web publishing.
 $pfm->setChannel('pear.php.net');
 $pfm->setAPIStability('beta');
 $pfm->setReleaseStability('beta');
-$pfm->setAPIVersion('1.0.0RC2');
-$pfm->setReleaseVersion('1.0.0RC2');
+$pfm->setAPIVersion('1.0.0RC3');
+$pfm->setReleaseVersion('1.0.0RC3');
 $pfm->setNotes('
-* Switch to HTTP_Request2
+Fix Exception throwing for PHP versions < 5.3.
 ');
 
 //$pfm->addMaintainer('lead', 'saltybeagle', 'Brett', 'brett.bieber@gmail.com');

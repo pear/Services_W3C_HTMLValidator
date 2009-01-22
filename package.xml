@@ -19,11 +19,11 @@ trivial to build a validation system for web publishing.
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2009-01-20</date>
- <time>08:25:26</time>
+ <date>2009-01-22</date>
+ <time>09:44:22</time>
  <version>
-  <release>1.0.0RC2</release>
-  <api>1.0.0RC2</api>
+  <release>1.0.0RC3</release>
+  <api>1.0.0RC3</api>
  </version>
  <stability>
   <release>beta</release>
@@ -31,7 +31,7 @@ trivial to build a validation system for web publishing.
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
  <notes>
-* Switch to HTTP_Request2
+Fix Exception throwing for PHP versions &lt; 5.3.
  </notes>
  <contents>
   <dir baseinstalldir="Services/W3C" name="/">
@@ -50,6 +50,7 @@ trivial to build a validation system for web publishing.
    </dir> <!-- /docs -->
    <dir name="HTMLValidator">
     <file name="Error.php" role="php" />
+    <file name="Exception.php" role="php" />
     <file name="Message.php" role="php" />
     <file name="Response.php" role="php" />
     <file name="Warning.php" role="php" />
@@ -187,8 +188,21 @@ Unit Tests now included, additional documentation and coding standards fixes.</n
    </stability>
    <date>2009-01-20</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>* Switch to HTTP_Request2</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0RC3</release>
+    <api>1.0.0RC3</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2009-01-22</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
    <notes>
-* Switch to HTTP_Request2
+Fix Exception throwing for PHP versions &lt; 5.3.
    </notes>
   </release>
  </changelog>
