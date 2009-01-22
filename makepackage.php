@@ -67,7 +67,7 @@ Fix Exception throwing for PHP versions < 5.3.
 //$pfm->addMaintainer('lead', 'saltybeagle', 'Brett', 'brett.bieber@gmail.com');
 $pfm->setLicense('BSD', 'http://www.opensource.org/licenses/bsd-license.php');
 $pfm->clearDeps();
-$pfm->setPhpDep('5.0.0');
+$pfm->setPhpDep('5.1.6');
 $pfm->setPearinstallerDep('1.4.3');
 $pfm->addPackageDepWithChannel('required', 'HTTP_Request2', 'pear.php.net', '0.2.0');
 

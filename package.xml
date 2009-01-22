@@ -20,7 +20,7 @@ trivial to build a validation system for web publishing.
   <active>yes</active>
  </lead>
  <date>2009-01-22</date>
- <time>09:44:22</time>
+ <time>10:15:50</time>
  <version>
   <release>1.0.0RC3</release>
   <api>1.0.0RC3</api>
@@ -69,7 +69,7 @@ Fix Exception throwing for PHP versions &lt; 5.3.
  <dependencies>
   <required>
    <php>
-    <min>5.0.0</min>
+    <min>5.1.6</min>
    </php>
    <pearinstaller>
     <min>1.4.3</min>
