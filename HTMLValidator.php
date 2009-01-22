@@ -342,6 +342,8 @@ class Services_W3C_HTMLValidator
     /**
      * Actually sends the request to the HTML Validator service
      *
+     * @throws Services_W3C_HTMLValidator_Exception
+     * 
      * @return bool true | false
      */
     protected function sendRequest()
@@ -349,7 +351,8 @@ class Services_W3C_HTMLValidator
         try {
             return $this->request->send();
         } catch (Exception $e) {
-            throw new Exception('Error sending request', null, $e);
+            include_once 'Services/W3C/HTMLValidator/Exception.php';
+            throw new Services_W3C_HTMLValidator_Exception('Error sending request', $e);
             return false;
         }
         
