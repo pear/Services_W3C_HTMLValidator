@@ -62,13 +62,14 @@ $pfm->setAPIVersion('1.0.0RC3');
 $pfm->setReleaseVersion('1.0.0RC3');
 $pfm->setNotes('
 Fix Exception throwing for PHP versions < 5.3.
+Increase PEAR Installer dependency to 1.5.4
 ');
 
 //$pfm->addMaintainer('lead', 'saltybeagle', 'Brett', 'brett.bieber@gmail.com');
 $pfm->setLicense('BSD', 'http://www.opensource.org/licenses/bsd-license.php');
 $pfm->clearDeps();
 $pfm->setPhpDep('5.1.6');
-$pfm->setPearinstallerDep('1.4.3');
+$pfm->setPearinstallerDep('1.5.4');
 $pfm->addPackageDepWithChannel('required', 'HTTP_Request2', 'pear.php.net', '0.2.0');
 
 $pfm->generateContents();

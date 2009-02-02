@@ -19,8 +19,8 @@ trivial to build a validation system for web publishing.
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2009-01-22</date>
- <time>10:15:50</time>
+ <date>2009-02-02</date>
+ <time>10:17:48</time>
  <version>
   <release>1.0.0RC3</release>
   <api>1.0.0RC3</api>
@@ -32,6 +32,7 @@ trivial to build a validation system for web publishing.
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
  <notes>
 Fix Exception throwing for PHP versions &lt; 5.3.
+Increase PEAR Installer dependency to 1.5.4
  </notes>
  <contents>
   <dir baseinstalldir="Services/W3C" name="/">
@@ -72,7 +73,7 @@ Fix Exception throwing for PHP versions &lt; 5.3.
     <min>5.1.6</min>
    </php>
    <pearinstaller>
-    <min>1.4.3</min>
+    <min>1.5.4</min>
    </pearinstaller>
    <package>
     <name>HTTP_Request2</name>
@@ -94,7 +95,9 @@ Fix Exception throwing for PHP versions &lt; 5.3.
    </stability>
    <date>2006-11-28</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
-   <notes>First release offers basic functionality only validate($uri) method.</notes>
+   <notes>
+First release offers basic functionality only validate($uri) method.
+   </notes>
   </release>
   <release>
    <version>
@@ -107,11 +110,13 @@ Fix Exception throwing for PHP versions &lt; 5.3.
    </stability>
    <date>2006-12-03</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
-   <notes>Added method to validate uploaded file validateFile();
+   <notes>
+Added method to validate uploaded file validateFile();
 Add method to validate html fragment validateFragment();
 Added a method to the Response object isValid().
 Add example for validateFragment and validateFile.
-Fix phpdoc commenting and various CS fixes (thanks David Coallier).</notes>
+Fix phpdoc commenting and various CS fixes (thanks David Coallier).
+   </notes>
   </release>
   <release>
    <version>
@@ -124,8 +129,10 @@ Fix phpdoc commenting and various CS fixes (thanks David Coallier).</notes>
    </stability>
    <date>2006-12-05</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
-   <notes>Switched methods from private to protected to allow overriding.
-Move all variables which were int 0|1 to booleans (thanks Christian Weiske).</notes>
+   <notes>
+Switched methods from private to protected to allow overriding.
+Move all variables which were int 0|1 to booleans (thanks Christian Weiske).
+   </notes>
   </release>
   <release>
    <version>
@@ -138,9 +145,11 @@ Move all variables which were int 0|1 to booleans (thanks Christian Weiske).</no
    </stability>
    <date>2007-06-07</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
-   <notes>Switch last remaining private member variable to protected (thanks Christian Weiske).
+   <notes>
+Switch last remaining private member variable to protected (thanks Christian Weiske).
 Move examples into docs directory (thanks Mark Wiesemann)
-Change channel from pear.saltybeagle.com to pear.php.net</notes>
+Change channel from pear.saltybeagle.com to pear.php.net
+   </notes>
   </release>
   <release>
    <version>
@@ -153,10 +162,12 @@ Change channel from pear.saltybeagle.com to pear.php.net</notes>
    </stability>
    <date>2007-06-14</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
-   <notes>New features - return error and warning source context, unique message id, and explanations for the error and warnings.
+   <notes>
+New features - return error and warning source context, unique message id, and explanations for the error and warnings.
 http://www.w3.org/Bugs/Public/show_bug.cgi?id=4489
 
-These features will be released in the next version of the W3C Validator (version 0.8.0), until the next release users can test the output by assigning the $validator-&gt;validator_uri to the CVS version for the validator http://qa-dev.w3.org/wmvs/HEAD/check.</notes>
+These features will be released in the next version of the W3C Validator (version 0.8.0), until the next release users can test the output by assigning the $validator-&gt;validator_uri to the CVS version for the validator http://qa-dev.w3.org/wmvs/HEAD/check.
+   </notes>
   </release>
   <release>
    <version>
@@ -169,13 +180,15 @@ These features will be released in the next version of the W3C Validator (versio
    </stability>
    <date>2007-07-25</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
-   <notes>New features - return error and warning source context, unique 
+   <notes>
+New features - return error and warning source context, unique 
 message id, and explanations for the error and warnings.
 http://www.w3.org/Bugs/Public/show_bug.cgi?id=4489
 
 These features are included in the latest version of the W3C Validator (version 
 0.8.0).
-Unit Tests now included, additional documentation and coding standards fixes.</notes>
+Unit Tests now included, additional documentation and coding standards fixes.
+   </notes>
   </release>
   <release>
    <version>
@@ -188,7 +201,9 @@ Unit Tests now included, additional documentation and coding standards fixes.</n
    </stability>
    <date>2009-01-20</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
-   <notes>* Switch to HTTP_Request2</notes>
+   <notes>
+* Switch to HTTP_Request2
+   </notes>
   </release>
   <release>
    <version>
@@ -199,10 +214,11 @@ Unit Tests now included, additional documentation and coding standards fixes.</n
     <release>beta</release>
     <api>beta</api>
    </stability>
-   <date>2009-01-22</date>
+   <date>2009-02-02</date>
    <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
    <notes>
 Fix Exception throwing for PHP versions &lt; 5.3.
+Increase PEAR Installer dependency to 1.5.4
    </notes>
   </release>
  </changelog>
