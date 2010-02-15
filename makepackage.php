@@ -1,9 +1,9 @@
 <?php
 /**
  * Generates the package.xml file for the Services_W3C_HTMLValidator package.
- * 
+ *
  * PHP versions 5
- * 
+ *
  * @category Services
  * @package  Services_W3C_HTMLValidator
  * @author   Brett Bieber <brett.bieber@gmail.com>
@@ -29,8 +29,8 @@ $pfm = PEAR_PackageFileManager2::importOptions('package.xml', array(
 //$pfm = new PEAR_PackageFileManager2();
 //$pfm->setOptions(array(
     'packagedirectory'  => dirname(__FILE__),
-    'baseinstalldir'    => 'Services/W3C',
-    'filelistgenerator' => 'cvs',
+    'baseinstalldir'    => '/',
+    'filelistgenerator' => 'svn',
     'ignore' => array(  'package.xml',
                         '.project',
                         '*.tgz',
@@ -45,14 +45,14 @@ $pfm = PEAR_PackageFileManager2::importOptions('package.xml', array(
 $pfm->setPackage('Services_W3C_HTMLValidator');
 $pfm->setPackageType('php'); // this is a PEAR-style php script package
 $pfm->setSummary('An Object Oriented Interface to the W3C HTML Validator service.');
-$pfm->setDescription('This package provides an object oriented interface to the API 
+$pfm->setDescription('This package provides an object oriented interface to the API
 of the W3 HTML Validator application (http://validator.w3.org/).
-With this package you can connect to a running instance of the validator and 
-retrieve the validation results (true|false) as well as the errors and warnings 
+With this package you can connect to a running instance of the validator and
+retrieve the validation results (true|false) as well as the errors and warnings
 for a web page.
 
-By using the SOAP 1.2 output format from the validator, you are returned simple 
-objects containing all the information from the validator. With this package it is 
+By using the SOAP 1.2 output format from the validator, you are returned simple
+objects containing all the information from the validator. With this package it is
 trivial to build a validation system for web publishing.
 ');
 $pfm->setChannel('pear.php.net');
