@@ -56,13 +56,15 @@ objects containing all the information from the validator. With this package it 
 trivial to build a validation system for web publishing.
 ');
 $pfm->setChannel('pear.php.net');
-$pfm->setAPIStability('beta');
-$pfm->setReleaseStability('beta');
-$pfm->setAPIVersion('1.0.0RC3');
-$pfm->setReleaseVersion('1.0.0RC3');
+$pfm->setAPIStability('stable');
+$pfm->setReleaseStability('stable');
+$pfm->setAPIVersion('1.0.0');
+$pfm->setReleaseVersion('1.0.0');
 $pfm->setNotes('
-Fix Exception throwing for PHP versions < 5.3.
-Increase PEAR Installer dependency to 1.5.4
+First stable release:
+* Fix Exception throwing for PHP versions < 5.3.
+* Increase PEAR Installer dependency to 1.5.4
+* Bug #17339  PHP Strict Standards
 ');
 
 //$pfm->addMaintainer('lead', 'saltybeagle', 'Brett', 'brett.bieber@gmail.com');

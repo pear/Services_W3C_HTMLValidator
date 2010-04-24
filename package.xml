@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.8.0alpha1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
  <name>Services_W3C_HTMLValidator</name>
  <channel>pear.php.net</channel>
  <summary>An Object Oriented Interface to the W3C HTML Validator service.</summary>
- <description>This package provides an object oriented interface to the API 
+ <description>This package provides an object oriented interface to the API
 of the W3 HTML Validator application (http://validator.w3.org/).
-With this package you can connect to a running instance of the validator and 
-retrieve the validation results (true|false) as well as the errors and warnings 
+With this package you can connect to a running instance of the validator and
+retrieve the validation results (true|false) as well as the errors and warnings
 for a web page.
 
-By using the SOAP 1.2 output format from the validator, you are returned simple 
-objects containing all the information from the validator. With this package it is 
+By using the SOAP 1.2 output format from the validator, you are returned simple
+objects containing all the information from the validator. With this package it is
 trivial to build a validation system for web publishing.
  </description>
  <lead>
@@ -19,23 +19,25 @@ trivial to build a validation system for web publishing.
   <email>brett.bieber@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2009-02-02</date>
- <time>10:17:48</time>
+ <date>2010-04-24</date>
+ <time>07:39:20</time>
  <version>
-  <release>1.0.0RC3</release>
-  <api>1.0.0RC3</api>
+  <release>1.0.0</release>
+  <api>1.0.0</api>
  </version>
  <stability>
-  <release>beta</release>
-  <api>beta</api>
+  <release>stable</release>
+  <api>stable</api>
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
  <notes>
-Fix Exception throwing for PHP versions &lt; 5.3.
-Increase PEAR Installer dependency to 1.5.4
+First stable release:
+* Fix Exception throwing for PHP versions &lt; 5.3.
+* Increase PEAR Installer dependency to 1.5.4
+* Bug #17339  PHP Strict Standards
  </notes>
  <contents>
-  <dir baseinstalldir="Services/W3C" name="/">
+  <dir baseinstalldir="/" name="/">
    <dir name="docs">
     <dir name="examples">
      <dir name="PHPUnit">
@@ -49,13 +51,18 @@ Increase PEAR Installer dependency to 1.5.4
      <file name="validate_responsexml.php" role="doc" />
     </dir> <!-- /docs/examples -->
    </dir> <!-- /docs -->
-   <dir name="HTMLValidator">
-    <file name="Error.php" role="php" />
-    <file name="Exception.php" role="php" />
-    <file name="Message.php" role="php" />
-    <file name="Response.php" role="php" />
-    <file name="Warning.php" role="php" />
-   </dir> <!-- /HTMLValidator -->
+   <dir name="Services">
+    <dir name="W3C">
+     <dir name="HTMLValidator">
+      <file name="Error.php" role="php" />
+      <file name="Exception.php" role="php" />
+      <file name="Message.php" role="php" />
+      <file name="Response.php" role="php" />
+      <file name="Warning.php" role="php" />
+     </dir> <!-- /Services/W3C/HTMLValidator -->
+     <file name="HTMLValidator.php" role="php" />
+    </dir> <!-- /Services/W3C -->
+   </dir> <!-- /Services -->
    <dir name="tests">
     <dir name="Services">
      <dir name="W3C">
@@ -64,7 +71,6 @@ Increase PEAR Installer dependency to 1.5.4
     </dir> <!-- /tests/Services -->
     <file name="AllTests.php" role="test" />
    </dir> <!-- /tests -->
-   <file name="HTMLValidator.php" role="php" />
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -219,6 +225,24 @@ Unit Tests now included, additional documentation and coding standards fixes.
    <notes>
 Fix Exception throwing for PHP versions &lt; 5.3.
 Increase PEAR Installer dependency to 1.5.4
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2010-04-24</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
+   <notes>
+First stable release:
+* Fix Exception throwing for PHP versions &lt; 5.3.
+* Increase PEAR Installer dependency to 1.5.4
+* Bug #17339  PHP Strict Standards
    </notes>
   </release>
  </changelog>

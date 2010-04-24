@@ -352,10 +352,12 @@ class Services_W3C_HTMLValidator
             return $this->request->send();
         } catch (Exception $e) {
             include_once 'Services/W3C/HTMLValidator/Exception.php';
-            throw new Services_W3C_HTMLValidator_Exception('Error sending request', $e);
-            return false;
+            if (version_compare(phpversion(), '5.3.0', '>')) {
+                throw new Services_W3C_HTMLValidator_Exception('Error sending request to the validator', $e);
+            }
+            // Rethrow
+            throw $e;
         }
-        
     }
     
     /**
