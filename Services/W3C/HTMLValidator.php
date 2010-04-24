@@ -321,7 +321,7 @@ class Services_W3C_HTMLValidator
      */
     protected function setQueryVariable($name, $value = '')
     {
-        $url =& $this->request->getURL();
+        $url = $this->request->getURL();
         $url->setQueryVariable($name, $value);
         $this->request->setURL($url);
     }
