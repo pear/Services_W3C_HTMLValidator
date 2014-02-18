@@ -8,7 +8,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Services_W3C_HTMLValidator": "./"
+            "Services": "./"
         }
     },
     "description": "More info available on: http://pear.php.net/package/Services_W3C_HTMLValidator",
@@ -23,7 +23,8 @@
     },
     "type": "library",
     "require": {
-        "pear/pear_exception": "*"
+        "pear/pear_exception": "*",
+        "pear/http_request2": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
