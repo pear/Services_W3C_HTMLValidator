@@ -280,10 +280,7 @@ class Services_W3C_HTMLValidator
             break;
         case 'file':
             $this->request->setMethod(HTTP_Request2::METHOD_POST);
-            $this->request->addUpload('uploaded_file',
-                                     $this->uploaded_file,
-                                     null,
-                                     'text/html');
+            $this->request->addUpload('uploaded_file', $this->uploaded_file);
             $method = 'addPostParameter';
             break;
         case 'fragment':
