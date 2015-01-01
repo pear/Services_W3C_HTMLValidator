@@ -43,28 +43,6 @@ class Services_W3C_HTMLValidatorTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Sets up the fixture, for example, open a network connection.
-     * This method is called before a test is executed.
-     *
-     * @access protected
-     * @return void
-     */
-    protected function setUp()
-    {
-    }
-
-    /**
-     * Tears down the fixture, for example, close a network connection.
-     * This method is called after a test is executed.
-     *
-     * @access protected
-     * @return void
-     */
-    protected function tearDown()
-    {
-    }
-
-    /**
      * Tests setting the options.
      *
      * @return void
@@ -110,7 +88,7 @@ class Services_W3C_HTMLValidatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(get_class($r), 'Services_W3C_HTMLValidator_Response');
         $this->assertEquals($r->isValid(), false);
         $this->assertEquals($r->charset, 'utf-8');
-        $this->assertEquals(count($r->errors), 37);
+        $this->assertEquals(count($r->errors), 12);
         $this->assertEquals(get_class($r->errors[0]),
             'Services_W3C_HTMLValidator_Error');
     }
