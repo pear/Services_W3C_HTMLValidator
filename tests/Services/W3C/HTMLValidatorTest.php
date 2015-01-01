@@ -12,14 +12,6 @@
  * @link     http://pear.php.net/package/Services_W3C_HTMLValidator
  * @since    File available since Release 0.2.0
  */
-// Call Services_W3C_HTMLValidatorTest::main() if executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Services_W3C_HTMLValidatorTest::main");
-}
-
-require_once "PHPUnit/Framework/TestCase.php";
-require_once "PHPUnit/Framework/TestSuite.php";
-
 require_once 'Services/W3C/HTMLValidator.php';
 
 /**
@@ -197,9 +189,3 @@ xmlns:m="http://www.w3.org/2005/10/markup-validator">
         'ource";N;}}s:8:"warnings";a:0:{}}');
     }
 }
-
-// Call Services_W3C_HTMLValidatorTest::main() if file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Services_W3C_HTMLValidatorTest::main") {
-    Services_W3C_HTMLValidatorTest::main();
-}
-?>
