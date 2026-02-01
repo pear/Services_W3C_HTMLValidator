@@ -44,7 +44,7 @@ class Services_W3C_HTMLValidator
      * 
      * @var string
      */
-    public $validator_uri = 'http://validator.w3.org/check';
+    public $validator_uri = 'https://validator.w3.org/check';
     
     /**
      * The URL of the document to validate
